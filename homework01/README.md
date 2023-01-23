@@ -4,9 +4,14 @@ Homework 01
 This homework tests us on our understanding of the Python language. 
 
 The first exercise asks us to print out the five longest words in the 'words'
-file. While we also discovered a solution to this question in class, it also 
-introduced us to opening and reading a file and using a sort function to
-quickly order the words.
+file. While we discovered a solution to this question in class, it also 
+introduced us to opening and reading a file. 
+
+Using a python function called 'sort', we filed each name by
+length. However, the sort function ordered the names from least
+to greatest in terms of the number of character, so we had to
+reverse it to get the result we wanted. Finally, to present our
+solution, we printed out a list with the five longest names. 
 
 The second exercise does not require us to open a file, but instead wants to 
 improve our understanding of modules, specifically the 'names' module. With
