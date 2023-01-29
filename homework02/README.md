@@ -4,7 +4,7 @@
 that are useful when exhanging information between other programs, including those written in different languages. JSON data
 is similar to the python diciontary with its key:value pairs.* 
 
-Part 1 makes us insert randomized data into a new JSON file using the `with open('meteorite_site.json', 'w') as out:' command.
+Part 1 makes us insert randomized data into a new JSON file using the `with open('meteorite_site.json', 'w') as out:` command.
 The new JSON file has the site identification number, the latitude and longitude at which the meteorite is located, and it's composition. 
 Using the `cat meteorite_site.json` command, we can see the data displayed in dictionary format. 
 
