@@ -32,27 +32,24 @@ def main():
  counter = 1
  total_time = 0
 
- while (counter <= 5):
-   print("leg:", counter)
-
+ while (counter < 7):
+   #calculating the distance traveled and finding out how long it took to travel that distance
    distance = calc_gcd(lat_init, long_init, sites_dict[counter]["latitude"], sites_dict[counter]["longitude"])
-#   distance = sites_dict[counter]["latitude"]
-   print(distance)
    travel_time = distance / speed
-   print("travel time:", travel_time)
 
+   #finding sample time
    if sites_dict[counter]["composition"] == "stony":
       sample_time = 1
    elif sites_dict[counter]["composition"] == "iron":
       sample_time = 2
    else:
       sample_time = 3
-
-   print("sample time:", sample_time)
-
+   # print(sites_dict[-1]["composition"]) -- ERROR WHEN CALLING ELEMENT 5
+   print("leg:", counter, ", time traveled:", travel_time, ", time to sample:", sample_time)
    counter += 1
-   total_time = total_time + travel_time + sample_time
-   print("total time traveled: ", total_time)
+
+ total_time = total_time + travel_time + sample_time
+ print("total time elapsed:", total_time)
 
 if __name__ == "__main__":
    main()
