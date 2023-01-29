@@ -29,11 +29,12 @@ def main():
  speed = 10 # kilometers per hour -- max speed of the rover
  mars_radius = 3389.5 # kilometers
 
- counter = 1
+ counter = 0
  total_time = 0
 
- while (counter < 7):
+ while (counter <= 4):
    #calculating the distance traveled and finding out how long it took to travel that distance
+   # IS THIS SUPPOSED TO BE INSIDE THE WHILE LOOP??? WHY DO LAT_INIT EVERY TIME??? IS THAT TRUE DISTANCE?
    distance = calc_gcd(lat_init, long_init, sites_dict[counter]["latitude"], sites_dict[counter]["longitude"])
    travel_time = distance / speed
 
@@ -45,10 +46,10 @@ def main():
    else:
       sample_time = 3
    # print(sites_dict[-1]["composition"]) -- ERROR WHEN CALLING ELEMENT 5
+   total_time = total_time + sample_time + travel_time
    print("leg:", counter, ", time traveled:", travel_time, ", time to sample:", sample_time)
    counter += 1
 
- total_time = total_time + travel_time + sample_time
  print("total time elapsed:", total_time)
 
 if __name__ == "__main__":
