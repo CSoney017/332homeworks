@@ -24,8 +24,8 @@ def main():
 
  sites_dict = ms_data["sites"]
 
- lat_init = 16.0 #starting latitude
- long_init = 82.0 # starting longitude
+ lat1 = 16.0 #starting latitude
+ long1 = 82.0 # starting longitude
  speed = 10 # kilometers per hour -- max speed of the rover
  mars_radius = 3389.5 # kilometers
 
@@ -34,9 +34,10 @@ def main():
 
  while (counter <= 4):
    #calculating the distance traveled and finding out how long it took to travel that distance
-   # IS THIS SUPPOSED TO BE INSIDE THE WHILE LOOP??? WHY DO LAT_INIT EVERY TIME??? IS THAT TRUE DISTANCE?
-   distance = calc_gcd(lat_init, long_init, sites_dict[counter]["latitude"], sites_dict[counter]["longitude"])
+
+   distance = calc_gcd(lat1, long1, sites_dict[counter]["latitude"], sites_dict[counter]["longitude"])
    travel_time = distance / speed
+   travel_time = str(round(travel_time, 2)) # rounding it to two decimal places
 
    #finding sample time
    if sites_dict[counter]["composition"] == "stony":
@@ -45,9 +46,16 @@ def main():
       sample_time = 2
    else:
       sample_time = 3
-   # print(sites_dict[-1]["composition"]) -- ERROR WHEN CALLING ELEMENT 5
+
+   travel_time = float(travel_time)
+   print("float travel time", travel_time)
    total_time = total_time + sample_time + travel_time
-   print("leg:", counter, ", time traveled:", travel_time, ", time to sample:", sample_time)
+   total_time = str(round(total_time, 2))
+   print("leg: ", counter , ", time traveled:", travel_time, ", time to sample:", sample_time)
+
+   # so that distance is calculated next time from the coordinates of the previous meteorite
+   lat1 = sites_dict[counter]["latitude"]
+   long1 = sites_dict[counter]["longitude"]
    counter += 1
 
  print("total time elapsed:", total_time)
