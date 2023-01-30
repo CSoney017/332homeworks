@@ -37,7 +37,6 @@ def main():
 
    distance = calc_gcd(lat1, long1, sites_dict[counter]["latitude"], sites_dict[counter]["longitude"])
    travel_time = distance / speed
-   travel_time = str(round(travel_time, 2)) # rounding it to two decimal places
 
    #finding sample time
    if sites_dict[counter]["composition"] == "stony":
@@ -48,9 +47,7 @@ def main():
       sample_time = 3
 
    travel_time = float(travel_time)
-   print("float travel time", travel_time)
    total_time = total_time + sample_time + travel_time
-   total_time = str(round(total_time, 2))
    print("leg: ", counter , ", time traveled:", travel_time, ", time to sample:", sample_time)
 
    # so that distance is calculated next time from the coordinates of the previous meteorite
