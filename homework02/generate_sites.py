@@ -3,6 +3,12 @@
 import json
 import random
 
+"""
+the purpose of this script is to generate 5 sites  written in a dictionary with 
+the site identification number, randomly chosen latitude and longitude coordinates of the meteorites, and a random composition. 
+This information will then be inserted into a JSON file. 
+"""
+
 composition = ["stony", "iron", "stony-iron"] # creating a list of possible compositions to choose from later
 
 sites_dict = {"sites":[]} # creating the dictionary sites_dict

@@ -4,7 +4,7 @@ import json
 import math
 
 #great circle distance algorithm -- function given in slack
-
+# this function will return the distance from the starting point (mars) to the first meteorite
 def calc_gcd(latitude_1: float, longitude_1: float, latitude_2: float, longitude_2: float) -> float:
     lat1, lon1, lat2, lon2 = map( math.radians, [latitude_1, longitude_1, latitude_2, longitude_2] )
     d_sigma = math.acos( math.sin(lat1) * math.sin(lat2) + math.cos(lat1) * math.cos(lat2) * math.cos(abs(lon1-lon2)))
@@ -13,11 +13,11 @@ def calc_gcd(latitude_1: float, longitude_1: float, latitude_2: float, longitude
 #stony = 1hour; iron = 2hours stony-iron = 3hours
 
 """
-use the gcd function each time we call the json file, does the function calculate time as well?
-   divide the distance by the speed of the rover to calculate the travel time
-use the counter set to 1 -- while loop
-use an if statement to determine what composition the meteorite is -- sample time
+call the gcd distance function each time and divide the output by the speed of the rover to calculate the travel time
+use the counter set to 0 (JSON file indices start at 0) to run through the JSON file 5 times. 
+use an if statement to determine what composition the meteorite is, thereby computing sample time
 """
+
 def main():
  with open ('meteorite_site.json', 'r') as f:
    ms_data = json.load(f)
