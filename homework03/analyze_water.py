@@ -1,5 +1,15 @@
 #this is a test comment
-def calc_turbidity(turb_data):
+def calc_turbidity(turb_data: list) -> float:
+ """
+ Will calculate the turbidity of the water sample based on the five most data points in the turb_data list
+
+ Args:
+   turb_data (list): list containing water sample quality data
+
+ Returns:
+   turb_sum (float): float that provides the current water turbidity
+
+ """
    turb_sum = 0.0
    for i in range(len(turb_data)):
      print(len(turb_data))
@@ -10,7 +20,7 @@ def calc_turbidity(turb_data):
    turb_sum = turb_sum / 5
    return turb_sum
 
-def safe_time(turb_standard, decay_factor, avg_turb):
+def safe_time(turb_standard: float, decay_factor: float, avg_turb: float): # what return ???
    if avg_turb > turb_standard:
      print("Warning: Turbidity is above threshold for safe use.")
      time_safe = math.log(turb_standard/avg_turb, 1 - decay_factor)

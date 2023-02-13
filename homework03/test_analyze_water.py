@@ -3,6 +3,7 @@ from analyze_water import calc_turbidity, safe_time
 import pytest
 # importing library needed to do unit testing
 
+# do we need to have type hints and doc strings for unit tests too?
 def test_calc_turbidity(): # testing first function to verify that the result is the product of the two numbers
    assert calc_turbidity(1.0, 2.0) == 2.0
    assert calc_turbidity(8.5, 2.3) == 19.55 # 19.55 = 8.5 * 2.3
