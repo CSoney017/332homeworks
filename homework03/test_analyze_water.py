@@ -13,3 +13,4 @@ def test_calc_turbidity(): # testing first function to verify that the result is
 def test_safe_time(): #testing second function to verify that minimum time required is accurate
    assert safe_time(1.0) == 0 # number I came up with
    assert safe_time(1.1992) == 8.99 # number specified in the doc
+
