@@ -1,6 +1,9 @@
 
 # Homework 03: The World Has Turned and Left Me Turbid
 
+The main purpose of this assignment is to familiarize ourselves with code organization and documentation in the form of type hints and docstrings. In part 3 of the assignment, we also 
+practive unit testing. 
+
 This homework is split into 2 parts: one script calling functions that determine the time
 it takes for a robot to collect meteorite samples. The first file `analyze_water.py`uses 
 water quality data to calculate turbidity of the sample. After calling a function defined 
@@ -29,7 +32,11 @@ A sample snippet of the data looks like this:
       "calibration_constant": 0.975,
       "detector_current": 1.141,
       "analyzed_by": "C. Milligan"
-    },`
+    }`
+
+Function 2 calculates the minimum time required for the water sample to be of safe use.
+I pass 3 variables of type float to the function, one being the standard for turbidity, the other being the factor at which it decays, and the last
+being the average turbidity that was calculated in function 1. 
 
 
 To run the code located in the github repository 332homeworks/homework03, the repo must first be 
