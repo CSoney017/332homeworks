@@ -37,7 +37,7 @@ cloned. To retreive the output, `cd` into the directory and run the command `pyt
 The output should be 3 sentences: the first sentence returning the average turbidity of the 
 first five measurements, the second identifying if the water is safe to use or not, and the last one 
 calculating the time required for the water to fall below the safety threshold if it has not done so already. 
-Please ensure that you have installed the python libraries: requests and json. 
+Please ensure that you have installed the python libraries: requests and json. To run the unit test file, please install the library 'pytest'. 
 
 Here is a snippet of what the output should return: 
 `Average turbidity based on the most recent five measurements =  1.1730472  NTU \n
