@@ -29,7 +29,7 @@ A sample snippet of the data looks like this:
       "calibration_constant": 0.975,
       "detector_current": 1.141,
       "analyzed_by": "C. Milligan"
-    },'
+    },`
 
 
 To run the code located in the github repository 332homeworks/homework03, the repo must first be 
