@@ -18,7 +18,7 @@ def calc_turbidity(recent_data: list) -> float:
      turb_sum = turb_sum + cur_a0 * cur_I90
 
    turb_sum = turb_sum / 5 # calculating average
-   print("Average turbidity based on the most recent five measurements = ", turb_sum)
+   print("Average turbidity based on the most recent five measurements = ", turb_sum, " NTU")
    return turb_sum
 
 def safe_time(turb_standard: float, decay_factor: float, avg_turb: float) -> float:
