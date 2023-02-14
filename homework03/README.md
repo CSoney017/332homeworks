@@ -40,7 +40,7 @@ calculating the time required for the water to fall below the safety threshold i
 Please ensure that you have installed the python libraries: requests and json. 
 
 Here is a snippet of what the output should return: 
-`Average turbidity based on the most recent five measurements =  1.1730472  NTU
+`Average turbidity based on the most recent five measurements =  1.1730472  NTU \n
 Warning: Turbidity is above threshold for safe use.
 Minimum time to return below a safe threshod =  0.98`
 
