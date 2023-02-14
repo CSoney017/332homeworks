@@ -33,7 +33,7 @@ def safe_time(turb_standard: float, decay_factor: float, avg_turb: float) -> flo
    Returns:
      time_left (float) = minimum time needed for water sample to be safe for use
    """
-    if avg_turb > turb_standard:
+   if avg_turb > turb_standard:
 
     time_left = 0
 
