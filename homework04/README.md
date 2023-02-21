@@ -1,20 +1,20 @@
 
 # Homework 04: Buddy Flask
 
-##objective:
+## objective:
 The purpose of this homework assignment is to build a Flask application 
 for querying and returning interesting information from the ISS data set. This project
 contains this README file and the python script 'iss_tracker.py'. 
 
-##Flask:
+## Flask:
 Flask in an application that receives a request from a client which the 
 framework recognizes and runs calculations which will return a result. 
 
-##Accessing Data:
+## Accessing Data:
 The data used for this project was taken from the [ISS Trajectory Data] (https://spotthestation.nasa.gov/trajectory_data.cfm) website.\
 It is accessed in the XML format. The data is categorized into the position and velocity depending on the epochs. 
 
-##Running the App:
+## Running the App:
 To run this app, please ensure that you have the requests and xmltodict libraries installed. 
 This can be done using
 `pip3 install --user <library_name>` 
@@ -31,7 +31,7 @@ curl localhost:5000/epochs/<epoch>
 curl localhost:5000/epochs/<epoch>/speed
 ```
 
-##Results:
+## Results:
 
 The first route `curl localhost:5000/` will return all the data in the XML file as a dictionary. 
 
