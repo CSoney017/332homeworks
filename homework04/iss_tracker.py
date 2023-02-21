@@ -19,19 +19,21 @@ def total_data() -> dict:
 @app.route('/epochs', methods = ['GET'])
 def epochs_only() -> dict:
    iss_data = get_data()
-#   epochs = [] # initializing list to store epochs
+   epochs = [] # initializing list to store epochs
+   data = []
    #accessing only the stateVector data
 
    data = iss_data['ndm']['oem']['body']['segment']['data']['stateVector']
 
-#   for ii in iss_data
-#     epochs.append(ii['EPOCH'])
-   return data
+   for ii in data:
+     epochs.append(ii['EPOCH'])
+   return epochs
 
-@app.route('/epochs/<int:epoch>', methods = ['GET'])
+@app.route('/epochs/<epoch>', methods = ['GET'])
+# the less than/greater than sign means that it's a specific value we're hunting for
 def stateVectors(epoch: str) -> dict:
-   iss_data = epochs_only()
-
+   iss_data = get_data()
+   iss_data = iss_data['ndm']['oem']['body']['segment']['data']['stateVector']
    output = {} # curly brackets = intializing dictionary
 
    for ii in iss_data:
@@ -40,17 +42,20 @@ def stateVectors(epoch: str) -> dict:
 
        for jj in output:
 
-         if key != 'EPOCH': #inserting value into dict
-           output[key] = float(output[key]['#text'])
+         if jj != 'EPOCH': #inserting value into dict
+           output[jj] = float(output[jj]['#text'])
 
    return output
 
 @app.route('/epochs/<epoch>/speed', methods = ['GET'])
 def calc_speed(epoch) -> int:
-   data = stateVectors(epoch)
-   if len(data > 0):
+   data = {}
+   data = stateVectors(epoch) # calling function stateVectors
+
+   if len(data) > 0:
      speed = math.sqrt(data['X_DOT']**2 + data['Y_DOT']**2 + data['Z_DOT']**2)
      return str(speed)
+
    else:
      return "Error: data must initialized"
 
