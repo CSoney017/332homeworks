@@ -15,9 +15,10 @@ The data used for this project was taken from the [ISS Trajectory Data] (https:/
 It is accessed in the XML format. The data is categorized into the position and velocity depending on the epochs. 
 
 ## Running the App:
-To run this app, please ensure that you have the requests and xmltodict libraries installed. 
+To run this app, please ensure that you have the requests, flask, and xmltodict libraries installed. 
 This can be done using
 `pip3 install --user <library_name>` 
+
 Once that is completed, run the following command in the same directory as the `iss_tracker.py` file: 
 
 `flask --app iss_tracker --debug run` 
