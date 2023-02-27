@@ -38,7 +38,7 @@ To run this app on Docker Hub, please pull the image using the command `docker p
 ### Calling Routes
 The first route `curl localhost:5000/` will return all the data in the XML file as >Below is an example of what the data returned should look like:
 
-`
+```
  {
                 "EPOCH": "2023-063T12:00:00.000Z",
                 "X": {
@@ -86,10 +86,10 @@ The first route `curl localhost:5000/` will return all the data in the XML file 
     }
   }
 }
-`
+```
 
 The second route `curl localhost:5000/epochs` will only display only all the epochs:
-`
+```
 "2023-063T11:19:00.000Z",
   "2023-063T11:23:00.000Z",
   "2023-063T11:27:00.000Z",
@@ -103,9 +103,9 @@ The second route `curl localhost:5000/epochs` will only display only all the epo
   "2023-063T11:59:00.000Z",
   "2023-063T12:00:00.000Z"
 ]
-`
+```
 However, with the new modifications, if the user has specified an offset and limit parameter of 2 and 5 respectively, the following would be the output:
-`
+```
 [
   "2023-063T11:23:00.000Z",
   "2023-063T11:27:00.000Z",
@@ -113,9 +113,9 @@ However, with the new modifications, if the user has specified an offset and lim
   "2023-063T11:35:00.000Z",
   "2023-063T11:39:00.000Z",
 ]
-`
+```
 The third route `curl localhost:5000/epochs/<epoch>` will return the data for one specific epoch. When using the command `curl localhost:5000/epochs/2023-063T11:27:00.000Z`, the following result should be displayed:
-`
+```
 {
   "EPOCH": "2023-063T11:27:00.000Z",
   "X": -5254.8392497479,
@@ -125,7 +125,7 @@ The third route `curl localhost:5000/epochs/<epoch>` will return the data for on
   "Z": 2961.7924901551,
   "Z_DOT": 5.00312313061336
 }
-`
+```
 The last route will return the velocity calculated at the specific epoch. Using the curl localhost:5000/epochs/<epoch>/speed, the function will calculate the speed at the given epoch. 
 The result shown below is calculated using the command
 `7.6680500515795895`. 
