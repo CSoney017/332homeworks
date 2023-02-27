@@ -86,10 +86,10 @@ The first route `curl localhost:5000/` will return all the data in the XML file 
     }
   }
 }
-```
+`
 
 The second route `curl localhost:5000/epochs` will only display only all the epochs:
-```
+`
 "2023-063T11:19:00.000Z",
   "2023-063T11:23:00.000Z",
   "2023-063T11:27:00.000Z",
@@ -103,7 +103,7 @@ The second route `curl localhost:5000/epochs` will only display only all the epo
   "2023-063T11:59:00.000Z",
   "2023-063T12:00:00.000Z"
 ]
-```
+`
 However, with the new modifications, if the user has specified an offset and limit parameter of 2 and 5 respectively, the following would be the output:
 `
 [
