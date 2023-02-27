@@ -7,8 +7,8 @@ import math
 app = Flask(__name__)
 
 response = requests.get(url = 'https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml')
-global data
-data = xmltodict.parse(response.text)
+global data #creating global variable 'data'
+data = xmltodict.parse(response.text) # intializing global variable 'data'
 
 def get_data() -> dict:
   """
@@ -21,7 +21,7 @@ def get_data() -> dict:
 
   response = requests.get(url = 'https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml')
   global data
-  data = xmltodict.parse(response.text)
+  data = xmltodict.parse(response.text) # do I really need to do this again? shouldn't the data already be stored?
   return data
 
 @app.route('/', methods = ['GET'])
@@ -34,7 +34,7 @@ def total_data() -> dict:
       iss_data(dict): data in XML file converted into a python dictionary
    """
 
-   iss_data = get_data()
+   iss_data = get_data() # note: iss_data is NOT a global variable
    return iss_data
 
 @app.route('/epochs', methods = ['GET'])
@@ -53,9 +53,9 @@ def epochs_only() -> list:
  epochs = [] # initializing list to store epochs
  global data
  #accessing only the stateVector data
-
+ # data is now modified to only containg the epochs and position vectors
  data = iss_data['ndm']['oem']['body']['segment']['data']['stateVector']
- offset = requests.args.get('offset', str(0))
+ offset = requests.args.get('offset', str(0)) # so what is wrong with this line?
  limit = requests.args.get('limit', str(len(iss_data)))
 
  if offset:
@@ -143,7 +143,7 @@ def help() -> str:
  return message
 
 @app.route('/delete-data', methods = ['DELETE'])
-def delete_data(data) -> dict:
+def delete_data() -> dict:
  """
    Deletes data from data dictionary
 
@@ -153,12 +153,13 @@ def delete_data(data) -> dict:
    Returns:
      data(dict): returns empty dictionary
  """
- data = data.clear()
+ global data
+ data.clear()
  print("data has been cleared")
  return data
 
-@app.route('/post-data', methods = ['GET'])
-def post_data(data) -> dict:
+@app.route('/post-data', methods = ['POST'])
+def post_data() -> dict:
  """
    Reinstates data to data dictionary
 
@@ -168,6 +169,7 @@ def post_data(data) -> dict:
    Returns:
      data(dict): dictionary with newly initialized data
  """
+ global data
  data = get_data()
  print("data has been reinitialized")
  return data

@@ -25,15 +25,20 @@ from the year 1994 and onward.
 inputs a value of 3, the file will return a maximum of 3 epochs. 
 
 ## Instructions
-This file has been written while keeping the Flask App in mind. 
+This file has been written to be used using the Flask app or using Docker Hub.
+
+### Flask 
 In one terminal, please clone this repository and run the file using the command 
 `flask --app iss_tracker --debug run`. In a separate terminal, please use the command
 `curl localhost:5000[route]`. 
 
+### Docker Hub
+To run this app on Docker Hub, please pull the image using the command `docker pull <username>/iss_tracker`. Then, use the command `docker run -it --rm -p 5000:5000 <username>/iss_tracker`. 
+
 ### Calling Routes
 The first route `curl localhost:5000/` will return all the data in the XML file as >Below is an example of what the data returned should look like:
 
-```
+`
  {
                 "EPOCH": "2023-063T12:00:00.000Z",
                 "X": {
@@ -109,9 +114,8 @@ However, with the new modifications, if the user has specified an offset and lim
   "2023-063T11:39:00.000Z",
 ]
 `
-The third route `curl localhost:5000/epochs/<epoch>` will return the data for one s>When using the command `curl localhost:5000/epochs/2023-063T11:27:00.000Z`
-
-```
+The third route `curl localhost:5000/epochs/<epoch>` will return the data for one specific epoch. When using the command `curl localhost:5000/epochs/2023-063T11:27:00.000Z`, the following result should be displayed:
+`
 {
   "EPOCH": "2023-063T11:27:00.000Z",
   "X": -5254.8392497479,
@@ -121,7 +125,7 @@ The third route `curl localhost:5000/epochs/<epoch>` will return the data for on
   "Z": 2961.7924901551,
   "Z_DOT": 5.00312313061336
 }
-```
-The last route will return the velocity calculated at the specific epoch. Using the>`
-7.6680500515795895
-`dw
+`
+The last route will return the velocity calculated at the specific epoch. Using the curl localhost:5000/epochs/<epoch>/speed, the function will calculate the speed at the given epoch. 
+The result shown below is calculated using the command
+`7.6680500515795895`. 
