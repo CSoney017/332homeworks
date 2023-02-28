@@ -35,7 +35,7 @@ def total_data() -> dict:
       iss_data(dict): data in XML file converted into a python dictionary
    """
 
-   iss_data = get_data() # note: iss_data is NOT a global variable
+   iss_data = get_data() # note: iss_data is NOT a global variable, but it's a dict
    return iss_data
 
 @app.route('/epochs', methods = ['GET'])
@@ -53,9 +53,9 @@ def epochs_only() -> list:
 
  epochs = [] # initializing list to store all epochs
  global data
- #accessing only the stateVector data
  # data is now modified to only containg the epochs and position vectors
  data = iss_data['ndm']['oem']['body']['segment']['data']['stateVector']
+
  offset = request.args.get('offset', 0) # so what is wrong with this line?
  limit = request.args.get('limit', len(iss_data))
 
@@ -70,14 +70,16 @@ def epochs_only() -> list:
    except typeError:
      return "Error: Please enter an integer"
 
- count = 0
- index = 0
+ count = 0 # how many epochs were printed out -- limit
 
- for ii in iss_data:
-  if (index >= offset):
-   epochs.append(ii['EPOCH'])
-  if (limit == len(epochs)):
-    break
+# while(count < limit):
+ for ii in data:
+   while (count <= limit):
+    # ii = int(ii)
+    epochs.append(ii['EPOCH']) # inserting epoch into list
+    # epochs is a list; append is a function for a list
+    # ii should be a str but to append you need a int?
+    count += 1
  return epochs
 
 @app.route('/epochs/<epoch>', methods = ['GET'])
