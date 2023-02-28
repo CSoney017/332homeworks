@@ -72,7 +72,6 @@ def epochs_only() -> list:
 
  count = 0 # how many epochs were printed out -- limit
 
-# while(count < limit):
  for ii in data:
    while (count <= limit):
     # ii = int(ii)

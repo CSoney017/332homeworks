@@ -21,8 +21,8 @@ in the file.
 The route `/epochs` has been modified to account for two query parameters: offset and limit. 
 
 1. The offset parameter will indicate which epoch should be listed first. For example, 
-if the user inputs 1994 as the offset value, the file will return epochs and their values
-from the year 1994 and onward. 
+if the user inputs 2 as the offset value, the file will return epochs and their values
+from the 2nd epoch onward. 
 
 2. The limit parameter indicates how many epoch values the user wants returned. If the user 
 inputs a value of 3, the file will return a maximum of 3 epochs. 
