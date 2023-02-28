@@ -4,4 +4,4 @@ RUN pip install Flask==2.2.2
 
 COPY iss_tracker.py /iss_tracker.py
 
-CMD["python", "iss_tracker"]
+CMD ["python", "iss_tracker"]

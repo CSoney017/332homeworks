@@ -4,7 +4,10 @@
 
 Homework 05 has us modify homework 04's python script, `iss_tracker.py`, to include two
 new routes, `/help`, `/delete-data`, and `/post-data`, while also adding query parameters
-to the already existing route, /epochs. 
+to the already existing route, /epochs. This homework also has us utilize Dockerfiles
+to create a framework where users can send requests to a server. The data used in this repository 
+is taken from this link: https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml. 
+The data was converted to an xml file before being used in the code. 
 
 ### New Routes
 
@@ -33,7 +36,8 @@ In one terminal, please clone this repository and run the file using the command
 `curl localhost:5000[route]`. 
 
 ### Docker Hub
-To run this app on Docker Hub, please pull the image using the command `docker pull <username>/iss_tracker`. Then, use the command `docker run -it --rm -p 5000:5000 <username>/iss_tracker`. 
+To run this app on Docker Hub, please pull the image using the command `docker pull <username>/iss_tracker`. Then, use the command `docker run -it --rm -p 5000:5000 <username>/iss_tracker`.
+Next, build the image using `docker build -t csoney017/iss_tracker:hw05 .` 
 
 ### Calling Routes
 The first route `curl localhost:5000/` will return all the data in the XML file as >Below is an example of what the data returned should look like:
@@ -126,6 +130,6 @@ The third route `curl localhost:5000/epochs/<epoch>` will return the data for on
   "Z_DOT": 5.00312313061336
 }
 ```
-The last route will return the velocity calculated at the specific epoch. Using the curl localhost:5000/epochs/<epoch>/speed, the function will calculate the speed at the given epoch. 
-The result shown below is calculated using the command
+The last route will return the velocity calculated at the specific epoch. Using the `curl localhost:5000/epochs/<epoch>/speed`, the function will calculate the speed at the given epoch. 
+The result shown below is an example:
 `7.6680500515795895`. 

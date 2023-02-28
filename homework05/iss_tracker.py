@@ -1,12 +1,13 @@
-from flask import Flask
-
 import requests
 import xmltodict
 import math
 
+from flask import Flask, request
+
 app = Flask(__name__)
 
 response = requests.get(url = 'https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml')
+
 global data #creating global variable 'data'
 data = xmltodict.parse(response.text) # intializing global variable 'data'
 
@@ -50,35 +51,33 @@ def epochs_only() -> list:
  response = requests.get(url = 'https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml')
  iss_data = xmltodict.parse(response.text)
 
- epochs = [] # initializing list to store epochs
+ epochs = [] # initializing list to store all epochs
  global data
  #accessing only the stateVector data
  # data is now modified to only containg the epochs and position vectors
  data = iss_data['ndm']['oem']['body']['segment']['data']['stateVector']
- offset = requests.args.get('offset', str(0)) # so what is wrong with this line?
- limit = requests.args.get('limit', str(len(iss_data)))
+ offset = request.args.get('offset', 0) # so what is wrong with this line?
+ limit = request.args.get('limit', len(iss_data))
 
  if offset:
    try:
      offset = int(offset)
    except typeError:
-     return "Error: Please enter a positive integer"
+     return "Error: Please enter an integer"
  if limit:
    try:
      limit = int(limit)
    except typeError:
-     return "Error: Please enter a positive integer"
+     return "Error: Please enter an integer"
 
  count = 0
  index = 0
 
  for ii in iss_data:
-  if (count == limit):
-   break
-  if index >= offset:
+  if (index >= offset):
    epochs.append(ii['EPOCH'])
-   count += 1
-  index += 1
+  if (limit == len(epochs)):
+    break
  return epochs
 
 @app.route('/epochs/<epoch>', methods = ['GET'])
@@ -136,9 +135,14 @@ def help() -> str:
    Returns:
       message(str): string with details of all the routes
  """
- message = "Usage: curl localhost:5000[ROUTE]\nRoutes:\n"
- message += "[/]	returns entire data set uploaded from xml sheet		[/epochs]	returns list of all epochs in data	[/epochs/<epoch>]	returns data at specified epoch		[/epochs/<epoch>/speed]		returns speed calculated at given epoch"
- message += "[/help]	returns information regarding routes		[/delete-data]		deletes data 		[/post-data]	restores data to ISS dictionary"
+ message = "Usage: curl localhost:5000[ROUTE]\nRoutes:\n\n"
+ message += "[/] = returns entire data set uploaded from xml sheet\n\n"
+ message += "[/epochs] = returns list of all epochs in data\n\n"
+ message += "[/epochs/<epoch>] = returns data at specified epoch\n\n"
+ message += "[/epochs/<epoch>/speed] = returns speed calculated at given epoch\n\n"
+ message += "[/help] = returns information regarding routes\n\n"
+ message += "[/delete-data] = deletes data\n\n"
+ message += "[/post-data] = restores data to ISS dictionary\n\n"
 
  return message
 
