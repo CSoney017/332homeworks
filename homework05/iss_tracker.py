@@ -1,6 +1,6 @@
-import requests
 import xmltodict
 import math
+import requests
 
 from flask import Flask, request
 
@@ -57,7 +57,7 @@ def epochs_only() -> list:
  data = iss_data['ndm']['oem']['body']['segment']['data']['stateVector']
 
  offset = request.args.get('offset', 0) # so what is wrong with this line?
- limit = request.args.get('limit', len(iss_data))
+ limit = request.args.get('limit', len(data))
 
  if offset:
    try:
@@ -72,13 +72,14 @@ def epochs_only() -> list:
 
  count = 0 # how many epochs were printed out -- limit
 
- for ii in data:
+ for item in data:
    while (count <= limit):
     # ii = int(ii)
-    epochs.append(ii['EPOCH']) # inserting epoch into list
+   # if(ii >= offset):
+     epochs.append(item['EPOCH']) # inserting epoch into list
     # epochs is a list; append is a function for a list
-    # ii should be a str but to append you need a int?
-    count += 1
+    # ii should be a str but to append you need a int
+     count += 1
  return epochs
 
 @app.route('/epochs/<epoch>', methods = ['GET'])
