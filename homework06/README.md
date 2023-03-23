@@ -12,7 +12,7 @@ The python script in this repository contains 3 routes: `/data`, `/genes`, and `
 
 - The `/data` route uses three different methods to return three different results. 
 
-** Different Methods:**
+**Different Methods:**
 
  1. POST
    Using the 'POST' method initializes the data into Redis
