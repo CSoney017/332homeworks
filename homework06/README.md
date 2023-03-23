@@ -12,16 +12,16 @@ The python script in this repository contains 3 routes: `/data`, `/genes`, and `
 
 - The `/data` route uses three different methods to return three different results. 
 
-**Different Methods:**
+  **Different Methods:**
 
- 1. POST
-   Using the 'POST' method initializes the data into Redis
+  1. POST
+     Using the 'POST' method initializes the data into Redis
 
- 2. GET
-   This method will return the previously initialized data from Redis
+  2. GET
+     This method will return the previously initialized data from Redis
 
- 3. DELETE
-   'DELETE' will delete the intialized data from Redis
+  3. DELETE
+     'DELETE' will delete the intialized data from Redis
 
 - `/genes` will return a json-formatted list of all hgnc_ids
 
