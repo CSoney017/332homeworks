@@ -37,9 +37,8 @@ def get_data():
  if request.method == 'POST':
 
    # global data
-   reponse = requests.get('https://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/hgnc_complete_set.json')
+   reponse = requests.get(url = 'https://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/hgnc_complete_set.json')
    rd = get_redis_client()
-   data = response.json()
 
    for item in response.json()['response']['docs']:
      key = f'{item["hgnc_id"]}'
@@ -49,7 +48,9 @@ def get_data():
 
  elif request.method == 'GET':
 
+   rd = get_redis_client()
    output_list = []
+
    for item in rd.keys():
      output_list.append(json.loads(rd.get(item)))
    return output_list
