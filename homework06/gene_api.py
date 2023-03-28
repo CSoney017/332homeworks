@@ -1,11 +1,12 @@
 import requests
 import redis
 import csv
+import json
 from flask import Flask, request
 
 app = Flask(__name__)
 
-def get_redit_client():
+def get_redis_client():
  '''
  required function to use redis
  '''
@@ -36,9 +37,10 @@ def get_data():
 
  if request.method == 'POST':
 
-   global data
-   reponse = requests.get(url = 'https://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/hgnc_complete_set.json')
-   data = json.loads(response.text)
+   # global data
+   reponse = requests.get('https://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/hgnc_complete_set.json')
+   rd = get_redis_client()
+   data = response.json()
 
    for item in response.json()['response']['docs']:
      key = f'{item["hgnc_id"]}'
@@ -55,10 +57,10 @@ def get_data():
 
  elif request.method == 'DELETE':
    rd.flushdb()
- return 'data has been cleared'
+   return 'data has been cleared'
 
-else:
- return "the method entered is unrecognized"
+ else:
+  return "the method entered is unrecognized"
 
 @app.route('/genes', methods = ['GET'])
 def all_hgnc() -> list:
@@ -130,7 +132,7 @@ def get_gene_info(gene_id):
  hgnc_data = []
 
  for item in rd.keys():
-   hgnc_data.append()json.loads(rd.get(item)))
+   hgnc_data.append(json.loads(rd.get(item)))
  for ii in hgnc_data:
    if point == id_str:
      gene_info = json.dumps(point)
