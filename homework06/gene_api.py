@@ -1,6 +1,5 @@
 import requests
 import redis
-import csv
 import json
 from flask import Flask, request
 
