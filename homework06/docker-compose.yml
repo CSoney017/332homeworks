@@ -15,6 +15,6 @@ services:
             dockerfile: ./Dockerfile
         depends_on:
             - redis-db
-        image: csoney017/hgnc_redis:1.0
+        image: csoney017/gene_api:1.0
         ports:
             - 5000:5000

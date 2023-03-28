@@ -1,7 +1,7 @@
 FROM python:3.8.10
 
-RUN pip install Flask==2.2.0 redis requests
+RUN pip install Flask==2.2.2 redis requests==2.22.0
 
-ADD ./genes_redis.py /genes_redis.py
+ADD ./gene_api.py /gene_api.py
 
 CMD ["python", "genes_redis.py"]
