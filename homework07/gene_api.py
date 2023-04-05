@@ -1,60 +1,82 @@
 from flask import Flask, request
 import redis
-mport requests
+import requests
 import json
 
 app = Flask(__name__)
 
 def get_redis_client():
     """
-    This function creates a connection to a Redis database
-    
-    Arguments
-        None
-    Returns
+    connecting to Redis
+
+    Args:
+      None
+    Return:
         redis_database (redis.client.Redis): Redis client
     """
-    return redis.Redis(host='klajoie-test-redis-service', port=6379, db=0, decode_responses=True)
+
+    return redis.Redis(host='csy017-test-redis-service', port=6379, db=0, decode_responses=True)
 
 rd = get_redis_client()
 
 @app.route('/data', methods=['GET', 'POST', 'DELETE'])
 def get_route():
     """
-    This function either posts, outputs, or deletes all data in the Redis database.
+    posts, outputs, or deletes all data in Redis depending on method used
 
-    Arguments
-        None
-    Returns
-        None
+    Args:
+      None
+
+    Returns:
+
+       Method:
+
+           POST:
+             (string): 'data has been loaded'
+
+           GET:
+              data(list): list containing all hgnc_ids
+
+           DELETE:
+              (string): 'data has been deleted'
+
     """
+
     if request.method == 'GET':
-        output_list = []
+        data = []
+
         for item in rd.keys():
-            output_list.append(json.loads(rd.get(item)))
-        return output_list
+            data.append(json.loads(rd.get(item)))
+
+        return data
+
     elif request.method == 'POST':
         response = requests.get('https://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/hgnc_complete_set.json')
+
         for item in response.json()['response']['docs']:
             key = f'{item["hgnc_id"]}'
-            item = json.dumps(item)            
+            item = json.dumps(item)
             rd.set(key, item)
-        return f'Data loaded, there are {len(rd.keys())} keys in the db.\n'
+
+        return f'Data has been loaded'
+
     elif request.method == 'DELETE':
         rd.flushdb()
-        return f'Data deleted, there are {len(rd.keys())} keys in the db.\n'
+        return f'Data has been deleted'
+
     else:
-        return 'The method you requested does not apply.\n', 400
+        return 'invalid method'
 
 @app.route('/genes', methods=['GET'])
 def get_genes() -> list:
     """
-    This function returns all of the keys in the Redis database.
+    returns json-formatted list of all hgnc_ids
 
-    Arguments
-        None
+    Args:
+      None
+
     Returns
-        keys (list): unordered list of all keys in the database
+        gene_id(list): contains all hgnc_id fields
     """
 
     return rd.keys()
@@ -62,15 +84,16 @@ def get_genes() -> list:
 @app.route('/genes/<string:hgnc_id>', methods=['GET'])
 def get_hgnc_id(hgnc_id:str) -> dict:
     """
-    This function retrieves a specific gene from the database.
+    returns a specified gene
 
-    Arguments
-        hgnc_id (str):  HGNC ID of the gene, EX. HGNC:35458
-    Returns
-        gene_info (dict): all HGNC approved information on the requested gene
+    Args:
+      hgnc_id (str):  hgnc id of a gene
+
+    Returns:
+        gene_info (dict): information on the specified gene
     """
     if rd.get(hgnc_id) == None:
-        return f'{hgnc_id} is not a gene in the dataset. Please try another.\n', 400
+        return 'ERROR: specified id is not a gene in the dataset'
 
     ret = json.loads(rd.get(hgnc_id))
     return ret
