@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: csy017-test-flask-service
+spec:
+  type: ClusterIP
+  selector:
+    app: csy017-test-flaskapp
+  ports:
+  - name: csy017-test-flask
+    port: 5000
+    targetPort: 5000
