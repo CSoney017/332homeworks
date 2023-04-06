@@ -39,7 +39,7 @@ The python script in this repository contains 3 routes: `/data`, `/genes`, and `
 ### Docker Hub
 
 To run this app on Docker Hub, please pull the image using the command 
-`docker pull csoney017/gene_api`. Run the image with `docker run -it --rm csoney017/gene_api:1.0`. 
+`docker pull csoney017/gene_api`. Run the image with `docker run -it --rm csoney017/hgnc_id:k8s`. 
 
 ### Dockerfile
 
@@ -47,9 +47,9 @@ Another way to run this project is to build your own image using the Dockerfile
 provided in this repository. Use the command 
 `$ docker build -t <username>/hgnc_id .`. 
 Replace <username> with your Docker Hub username both in the command listed above
-and also in the docker-compose.yml file in the line `image: <username>/gene_api:1.0`. .
+and also in the docker-compose.yml file in the line `image: <username>/hgnc_id:k8s`. .
 Run the image with 
-`$ docker run -it --rm -p 5000:5000 <username>/hgnc_api:k8s .`. 
+`$ docker run -it --rm -p 5000:5000 <username>/hgnc_id:k8s .`. 
 
 ### docker-compose 
 To launch the app using Redis, use the command
