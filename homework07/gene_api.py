@@ -6,16 +6,7 @@ import json
 app = Flask(__name__)
 
 def get_redis_client():
-    """
-    connecting to Redis
-
-    Args:
-      None
-    Return:
-        redis_database (redis.client.Redis): Redis client
-    """
-
-    return redis.Redis(host='csy017-test-redis-service', port=6379, db=0, decode_responses=True)
+   return redis.Redis(host='csy017-test-redis-service', port=6379, db=0, decode_responses=True)
 
 rd = get_redis_client()
 
@@ -39,7 +30,6 @@ def get_route():
 
            DELETE:
               (string): 'data has been deleted'
-
     """
 
     if request.method == 'GET':
@@ -62,6 +52,7 @@ def get_route():
 
     elif request.method == 'DELETE':
         rd.flushdb()
+
         return f'Data has been deleted'
 
     else:

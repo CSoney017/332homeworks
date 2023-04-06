@@ -15,6 +15,6 @@ services:
             dockerfile: ./Dockerfile
         depends_on:
             - redis-db
-        image: csoney017/gene_flask_app:k8s
+        image: csoney017/hgnc_id:k8s
         ports:
             - 5000:5000
