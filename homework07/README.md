@@ -67,10 +67,33 @@ Each `.yml` should have been applied.
 
 To confirm that the pods are running, use the command
 `$ kubectl get pods`. 
+
+The result should be similar to the one shown below: 
+
+```
+{
+$ kubectl get pods
+NAME                                            READY   STATUS    RESTARTS   AGE
+csy017-test-redis-deployment-8bfd9bf7b-d6hv8    1/1     Running   0          6h4m
+py-debug-deployment-f484b4b99-qf9kz             1/1     Running   0          6h6m
+test-csy017-flask-deployment-5589676dcf-7t2h2   1/1     Running   0          5h45m
+test-csy017-flask-deployment-5589676dcf-8g8pm   1/1     Running   0          5h45m
+}
+```
+
 In addition to the status of the pods, it will also return the identification series of each pod. 
 
 Access the python debug deployment file to use the K8S cluster: 
-`$ kubectl exec -it <python_deployment_file> -- /bin/bash`
+`$ kubectl exec -it <python_deployment_file> -- /bin/bash` 
 
 This will redirect you into a terminal where you may now curl each of the 
-routes. 
+routes, such as this one: 
+
+```
+{
+$ kubectl exec -it py-debug-deployment-f484b4b99-qf9kz -- /bin/bash
+root@py-debug-deployment-f484b4b99-qf9kz:/#
+}
+```
+This is where you may `curl` any of the routes. However, please note that instead 
+of using the usual `localhost`, you must replace it with `csy017-test-flask-service`. 
