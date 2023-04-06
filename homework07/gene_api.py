@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 
 def get_redis_client():
-   return redis.Redis(host='csy017-test-redis-service', port=6379, db=0, decode_responses=True)
+   return redis.StrictRedis(host=host, port=port, db=db, decode_responses=True)
 
 rd = get_redis_client()
 
@@ -86,8 +86,8 @@ def get_hgnc_id(hgnc_id:str) -> dict:
     if rd.get(hgnc_id) == None:
         return 'ERROR: specified id is not a gene in the dataset'
 
-    ret = json.loads(rd.get(hgnc_id))
-    return ret
+    output = json.loads(rd.get(hgnc_id))
+    return output
 
 if __name__ == '__main__':
         app.run(debug=True, host='0.0.0.0')
