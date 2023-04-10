@@ -13,6 +13,16 @@ def get_redis_client():
 
 rd = get_redis_client()
 
+@app.route('/plot', methods = ['GET'])
+def plot_redis():
+
+ import matplotlib.pyplot as plt
+ import numpy as np
+
+ x = np.linspace(0, 2*np.pi, 50)
+ plt.plot(x, np.sin(x))
+ plt.savefig('my_sinwave.png')
+
 @app.route('/data', methods = ['POST', 'GET', 'DELETE'])
 def get_data():
  '''
