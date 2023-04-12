@@ -18,3 +18,5 @@ services:
         image: csoney017/hgnc_id:k8s
         ports:
             - 5000:5000
+        environment:
+          - REDIS_IP = csy017-test-redis-service

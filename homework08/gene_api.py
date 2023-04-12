@@ -2,11 +2,17 @@ from flask import Flask, request
 import redis
 import requests
 import json
+import os
 
 app = Flask(__name__)
 
 def get_redis_client():
-   return redis.StrictRedis(host=host, port=port, db=db, decode_responses=True)
+ redis_ip = os.environ.get('REDIS_IP')
+ if not redis_ip:
+    raise Exception()
+ rd=redis.Redis(host=redis_ip, port=6379, db=0)
+
+ #return redis.StrictRedis(host=host, port=port, db=db, decode_responses=True)
 
 rd = get_redis_client()
 
