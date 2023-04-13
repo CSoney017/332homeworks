@@ -22,9 +22,8 @@ spec:
           env:
           - name: FLASK_APP
             value: "gene_api.py"
+          - name: REDIS_IP
+            value: csy017-test-redis-service
           ports:
           - name: http
             containerPort: 5000
-          env: 
-            - name: REDIS_IP
-              value: csy017-test-redis-service
