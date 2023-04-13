@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: csy017-test-flask
-          image: csoney017/gene_api:1.0
+          image: csoney017/gene_flask:matplot
           imagePullPolicy: Always
           env:
           - name: FLASK_APP
