@@ -31,10 +31,21 @@ The python script in this repository contains 3 routes: `/data`, `/genes`, and `
 
 - `/genes/<hgnc_id>` will return all data associated with a specified <hgnc_id>
 
+- the `/image` route also takes in the three methods to return various results
 
+ **Different Methods:**
+
+ 1. POST
+    Using the 'POST' method reads the IDs for the genes and creates a pie chart in the Redis database
+
+ 2. GET
+    returns the previously initialized image to the user
+
+ 3. DELETE
+    deletes the image from the redis database 
 ## Running the Project
 ** note: ** before attempting to run this project, please ensure the GitHub repository has been cloned using the command:
-`git clone git@github.com:CSoney017/332homeworks.git`. 
+`git clone git@github.com:CSoney017/332homeworks.git`. Additionally, none of the code needs to be changed as it has already been hardcoded.  
 
 ### Docker Hub
 
